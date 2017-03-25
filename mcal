@@ -1,0 +1,37 @@
+#!/bin/bash
+#Javier Chamorro Abella 70426709L
+#Oscar Sanchez Rueda 51503108J
+# mcal mejora del comando cal(calendario)
+
+# se guardan los argumentos en variables
+var1=$1
+var2=$2
+numVar=$#
+
+# se ejecuta el comando set `date` y se guarda el 
+#año en year
+set `date`
+year=$6
+
+if [ "$var1" = "-help" ]; then
+	echo "Usage: mcal [mes] [año]"
+# comprueba si solo hay una variable
+elif [ "$numVar" -eq 1  ];then
+	# si hay una variable y es menor que 13 la 
+	#interpreta como un mes del año en curso
+	if [ "$var1" -lt 13 ]; then
+		cal "$var1" "$year"
+	# si la variable es mayor que 13 
+	#la interpreta como un año	
+	elif [ "$var1" -gt 12 ];then
+		cal "$var1"
+	#para los casos que la primera variable no es 
+	# un numero la toma como si fuera un mes 	
+	else
+		cal "$var1" "$year"
+	fi
+# si no tienen una variable, tiene dos, la primera
+#es el mes y la segunda el año		
+else
+	cal "$var1" "$var2"
+fi
